@@ -1,8 +1,8 @@
-package com.asapp.backend.challenge.services.impl;
+package com.asapp.backend.challenge.impl;
 
+import com.asapp.backend.challenge.UsersService;
 import com.asapp.backend.challenge.model.User;
 import com.asapp.backend.challenge.repository.UsersRepository;
-import com.asapp.backend.challenge.services.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

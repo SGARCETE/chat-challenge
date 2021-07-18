@@ -1,7 +1,8 @@
 package com.asapp.backend.challenge.controller;
 
 import com.asapp.backend.challenge.model.User;
-import com.asapp.backend.challenge.services.UsersService;
+import com.asapp.backend.challenge.UsersService;
+import com.asapp.backend.challenge.resources.UserResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class UsersController {
     @PostMapping
     public ResponseEntity<User> createUser(@Valid @RequestBody User user){
         User response = usersService.createUser(user);
-        return new ResponseEntity(response.getId(), HttpStatus.OK);
+        return new ResponseEntity(new UserResource(response.getId()), HttpStatus.OK);
     }
 
 }

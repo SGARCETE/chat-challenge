@@ -1,4 +1,4 @@
-package com.asapp.backend.challenge.services;
+package com.asapp.backend.challenge;
 
 import com.asapp.backend.challenge.model.User;
 
