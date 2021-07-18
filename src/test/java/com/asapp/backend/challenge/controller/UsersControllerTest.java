@@ -1,7 +1,7 @@
 package com.asapp.backend.challenge.controller;
 
 import com.asapp.backend.challenge.model.User;
-import com.asapp.backend.challenge.UsersService;
+import com.asapp.backend.challenge.services.UsersService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

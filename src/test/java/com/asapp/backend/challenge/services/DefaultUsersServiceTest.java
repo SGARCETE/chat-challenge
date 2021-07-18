@@ -1,9 +1,8 @@
 package com.asapp.backend.challenge.services;
 
-import com.asapp.backend.challenge.UsersService;
 import com.asapp.backend.challenge.model.User;
 import com.asapp.backend.challenge.repository.UsersRepository;
-import com.asapp.backend.challenge.impl.DefaultUsersService;
+import com.asapp.backend.challenge.services.impl.DefaultUsersService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

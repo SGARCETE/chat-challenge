@@ -1,8 +1,8 @@
 package com.asapp.backend.challenge.controller;
 
 import com.asapp.backend.challenge.model.User;
-import com.asapp.backend.challenge.UsersService;
 import com.asapp.backend.challenge.resources.UserResource;
+import com.asapp.backend.challenge.services.UsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
