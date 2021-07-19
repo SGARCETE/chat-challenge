@@ -1,19 +1,18 @@
 package com.asapp.backend.challenge.config;
 
 import com.asapp.backend.challenge.exceptions.ApiError;
+import com.asapp.backend.challenge.exceptions.PasswordNotValidException;
+import com.asapp.backend.challenge.exceptions.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +22,22 @@ import java.util.stream.Collectors;
 public class ControllerExceptionHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ControllerExceptionHandler.class);
+
+    @ExceptionHandler(value = {PasswordNotValidException.class})
+    public ResponseEntity<ApiError> passwordNotValidException(PasswordNotValidException ex) {
+        LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
+        ApiError apiError = new ApiError("Password not valid exception", ex.getMessage(), HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(apiError.getStatus())
+                .body(apiError);
+    }
+
+    @ExceptionHandler(value = {UserNotFoundException.class})
+    public ResponseEntity<ApiError> userNotFoundException(UserNotFoundException ex) {
+        LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
+        ApiError apiError = new ApiError("User not found Exception", ex.getMessage(), HttpStatus.NOT_FOUND.value());
+        return ResponseEntity.status(apiError.getStatus())
+                .body(apiError);
+    }
 
     @ExceptionHandler(value = {ConstraintViolationException.class})
     public ResponseEntity<ApiError> constraintViolationException(ConstraintViolationException ex) {
@@ -59,4 +74,5 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(apiError.getStatus())
                 .body(apiError);
     }
+
 }
