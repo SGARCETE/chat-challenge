@@ -2,9 +2,7 @@ package com.asapp.backend.challenge.controller;
 
 import com.asapp.backend.challenge.model.User;
 import com.asapp.backend.challenge.resources.AuthResource;
-import com.asapp.backend.challenge.resources.UserResource;
 import com.asapp.backend.challenge.services.AuthService;
-import com.asapp.backend.challenge.services.UsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +24,9 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping
-    public ResponseEntity<AuthResource> loginUser(@Valid @RequestBody User user){
+    public ResponseEntity<AuthResource> loginUser(@Valid @RequestBody User user) {
         User response = authService.authUser(user.getUserName(), user.getPassword());
-        return new ResponseEntity(new AuthResource(response.getId(), authService.getJWTToken(user.getUserName())), HttpStatus.OK);
+        return new ResponseEntity(new AuthResource(response.getId(), authService.getToken(user.getUserName())), HttpStatus.OK);
     }
 
 }

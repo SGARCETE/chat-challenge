@@ -34,7 +34,7 @@ public class DefaultAuthService implements AuthService {
         }
     }
 
-    public String getJWTToken(String userName) {
+    public String getToken(String userName) {
         String secretKey = "mySecretKey";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                 .commaSeparatedStringToAuthorityList("ROLE_USER");
