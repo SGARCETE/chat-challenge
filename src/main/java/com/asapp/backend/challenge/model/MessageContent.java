@@ -2,10 +2,7 @@ package com.asapp.backend.challenge.model;
 
 import com.asapp.backend.challenge.model.enums.MessageContentType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
@@ -18,6 +15,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class MessageContent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
