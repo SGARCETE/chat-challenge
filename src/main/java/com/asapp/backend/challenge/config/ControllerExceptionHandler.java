@@ -2,6 +2,7 @@ package com.asapp.backend.challenge.config;
 
 import com.asapp.backend.challenge.exceptions.ApiError;
 import com.asapp.backend.challenge.exceptions.PasswordNotValidException;
+import com.asapp.backend.challenge.exceptions.UserAlreadyExistsException;
 import com.asapp.backend.challenge.exceptions.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,14 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ApiError> passwordNotValidException(PasswordNotValidException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
         ApiError apiError = new ApiError("Password not valid exception", ex.getMessage(), HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(apiError.getStatus())
+                .body(apiError);
+    }
+
+    @ExceptionHandler(value = {UserAlreadyExistsException.class})
+    public ResponseEntity<ApiError> userAlreadyExistsException(UserAlreadyExistsException ex) {
+        LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
+        ApiError apiError = new ApiError("User already exists Exception", ex.getMessage(), HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(apiError.getStatus())
                 .body(apiError);
     }
