@@ -26,7 +26,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user){
+    public ResponseEntity<AuthResource> createUser(@Valid @RequestBody User user){
         User response = authService.authUser(user.getUserName(), user.getPassword());
         return new ResponseEntity(new AuthResource(response.getId()), HttpStatus.OK);
     }

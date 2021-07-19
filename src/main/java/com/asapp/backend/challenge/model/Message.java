@@ -26,7 +26,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
-    private OffsetDateTime dateCreated;
+    private OffsetDateTime timestamp;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "sender_id", nullable = false)
@@ -48,6 +48,6 @@ public class Message {
         this.message = message;
         this.sender = sender;
         this.recipient = recipient;
-        this.dateCreated = OffsetDateTime.now();
+        this.timestamp = OffsetDateTime.now();
     }
 }
