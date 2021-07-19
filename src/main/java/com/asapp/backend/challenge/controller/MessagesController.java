@@ -4,7 +4,7 @@ import com.asapp.backend.challenge.model.Message;
 import com.asapp.backend.challenge.model.dtos.MessageDto;
 import com.asapp.backend.challenge.resources.MessageResource;
 import com.asapp.backend.challenge.resources.MessageSearchResource;
-import com.asapp.backend.challenge.services.MessageService;
+import com.asapp.backend.challenge.services.MessagesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +23,11 @@ public class MessagesController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MessagesController.class);
 
     @Autowired
-    private MessageService messageService;
+    private MessagesService messagesService;
 
     @PostMapping
     public ResponseEntity<MessageResource> sendMessage(@Valid @RequestBody MessageDto messageDto) {
-        Message response = messageService.sendMessage(messageDto.getContent()
+        Message response = messagesService.sendMessage(messageDto.getContent()
                 , messageDto.getSender(), messageDto.getRecipient());
         return new ResponseEntity(new MessageResource(response.getId(), response.getTimestamp()), HttpStatus.OK);
     }
@@ -35,12 +35,8 @@ public class MessagesController {
     @GetMapping
     public ResponseEntity<MessageResource> searchMessages(@RequestParam @Min(1) @Positive(message = "Please provide a valid recipient attribute in JSON request") long recipient,
                                                           @RequestParam @Min(1) @Positive(message = "Please provide a valid start attribute in JSON request") Integer start,
-                                                          @RequestParam(required = false) Integer limit) {
-        if(limit == null) {
-            limit = 100;
-        }
-
-        List<Message> response = messageService.getAllMessagesBySender(recipient, start, limit);
+                                                          @RequestParam(required = false, defaultValue = "100") Integer limit) {
+        List<Message> response = messagesService.getAllMessagesBySender(recipient, start, limit);
         return new ResponseEntity(new MessageSearchResource(response), HttpStatus.OK);
     }
 

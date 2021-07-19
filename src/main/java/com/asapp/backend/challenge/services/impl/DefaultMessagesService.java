@@ -6,7 +6,7 @@ import com.asapp.backend.challenge.model.MessageContent;
 import com.asapp.backend.challenge.model.User;
 import com.asapp.backend.challenge.repository.MessageRepository;
 import com.asapp.backend.challenge.repository.UsersRepository;
-import com.asapp.backend.challenge.services.MessageService;
+import com.asapp.backend.challenge.services.MessagesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class DefaultMessageService implements MessageService {
+public class DefaultMessagesService implements MessagesService {
 
     @Autowired
     private final UsersRepository usersRepository;

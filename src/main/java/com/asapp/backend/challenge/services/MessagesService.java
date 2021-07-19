@@ -5,7 +5,7 @@ import com.asapp.backend.challenge.model.MessageContent;
 
 import java.util.List;
 
-public interface MessageService {
+public interface MessagesService {
     Message sendMessage(MessageContent message, long senderId, long recipientId);
     List<Message> getAllMessagesBySender(Long senderId, Integer start, Integer limit);
 }

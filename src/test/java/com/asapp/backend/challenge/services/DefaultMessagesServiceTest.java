@@ -7,7 +7,7 @@ import com.asapp.backend.challenge.model.User;
 import com.asapp.backend.challenge.model.enums.MessageContentType;
 import com.asapp.backend.challenge.repository.MessageRepository;
 import com.asapp.backend.challenge.repository.UsersRepository;
-import com.asapp.backend.challenge.services.impl.DefaultMessageService;
+import com.asapp.backend.challenge.services.impl.DefaultMessagesService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -21,8 +21,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class DefaultMessageServiceTest {
-    private MessageService messageService;
+public class DefaultMessagesServiceTest {
+    private MessagesService messagesService;
     private UsersRepository userRepository;
     private MessageRepository messageRepository;
     private User sender;
@@ -33,7 +33,7 @@ public class DefaultMessageServiceTest {
     public void setUp() {
         userRepository = Mockito.mock(UsersRepository.class);
         messageRepository = Mockito.mock(MessageRepository.class);
-        messageService = new DefaultMessageService(userRepository, messageRepository);
+        messagesService = new DefaultMessagesService(userRepository, messageRepository);
         sender = buildNewUser();
         recipient = buildNewUser().setId(2L);
         message = buildNewMessage(sender, recipient);
@@ -44,7 +44,7 @@ public class DefaultMessageServiceTest {
         Mockito.when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(sender));
         Mockito.when(messageRepository.save(Mockito.any(Message.class))).thenReturn(message);
 
-        Message response = messageService.sendMessage(message.getContent(), sender.getId(), recipient.getId());
+        Message response = messagesService.sendMessage(message.getContent(), sender.getId(), recipient.getId());
 
         assertEquals(message.getId(), response.getId());
     }
@@ -52,7 +52,8 @@ public class DefaultMessageServiceTest {
     @Test
     public void testSendMessageThenThrowsUserNotFoundException() {
         Mockito.when(userRepository.findByUserName(Mockito.anyString())).thenReturn(Optional.empty());
-        Throwable ex = assertThrows(UserNotFoundException.class, () -> {messageService.sendMessage(message.getContent(), sender.getId(), recipient.getId());});
+        Throwable ex = assertThrows(UserNotFoundException.class, () -> {
+            messagesService.sendMessage(message.getContent(), sender.getId(), recipient.getId());});
         assertEquals(String.format("The user with ID %s does not exists", sender.getId()), ex.getMessage());
     }
 
@@ -61,7 +62,7 @@ public class DefaultMessageServiceTest {
         Mockito.when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(sender));
         Mockito.when(messageRepository.findAllBySender(Mockito.any(User.class), Mockito.any(Pageable.class))).thenReturn(Arrays.asList(message));
 
-        List<Message> response = messageService.getAllMessagesBySender(sender.getId(), 1, 10);
+        List<Message> response = messagesService.getAllMessagesBySender(sender.getId(), 1, 10);
 
         assertEquals(1, response.size());
         assertEquals(message.getId(), response.get(0).getId());
@@ -70,7 +71,8 @@ public class DefaultMessageServiceTest {
     @Test
     public void testSearchUserMessagesThenThrowsUserNotFoundException() {
         Mockito.when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.empty());
-        Throwable ex = assertThrows(UserNotFoundException.class, () -> {messageService.getAllMessagesBySender(sender.getId(), 1, 10);});
+        Throwable ex = assertThrows(UserNotFoundException.class, () -> {
+            messagesService.getAllMessagesBySender(sender.getId(), 1, 10);});
         assertEquals(String.format("The user with ID %s does not exists", sender.getId()), ex.getMessage());
     }
 
