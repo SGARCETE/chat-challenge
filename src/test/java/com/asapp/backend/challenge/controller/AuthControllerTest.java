@@ -42,7 +42,8 @@ public class AuthControllerTest {
     void testAuthUserSuccessfullyWithStatus200ReturnsUserId() throws Exception {
         doReturn(user).when(authService).authUser(anyString(), anyString());
 
-        mockMvc.perform(get("/users/{id}", 1L)
+        mockMvc.perform(post("/login")
+                .content(objectMapper.writeValueAsString(user))
                 .contentType("application/json"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(user.getId()))

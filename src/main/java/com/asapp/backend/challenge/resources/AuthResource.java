@@ -13,4 +13,5 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 public class AuthResource {
     long id;
+    String token;
 }
