@@ -4,7 +4,6 @@ import com.asapp.backend.challenge.exceptions.PasswordNotValidException;
 import com.asapp.backend.challenge.exceptions.UserNotFoundException;
 import com.asapp.backend.challenge.model.User;
 import com.asapp.backend.challenge.services.AuthService;
-import com.asapp.backend.challenge.services.UsersService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;

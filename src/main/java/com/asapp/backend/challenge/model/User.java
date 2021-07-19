@@ -7,6 +7,8 @@ import lombok.experimental.Accessors;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,6 +25,11 @@ public class User {
     private String userName;
     @NotEmpty(message = "Please provide a password attribute in JSON request")
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "sender")
+    private List<Message> messages = Collections.emptyList();
 
     @Override
     public boolean equals(Object o) {
