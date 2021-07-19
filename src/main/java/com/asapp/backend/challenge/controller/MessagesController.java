@@ -1,7 +1,7 @@
 package com.asapp.backend.challenge.controller;
 
 import com.asapp.backend.challenge.model.Message;
-import com.asapp.backend.challenge.model.dtos.MessageDto;
+import com.asapp.backend.challenge.dtos.MessageDto;
 import com.asapp.backend.challenge.resources.MessageResource;
 import com.asapp.backend.challenge.resources.MessageSearchResource;
 import com.asapp.backend.challenge.services.MessagesService;

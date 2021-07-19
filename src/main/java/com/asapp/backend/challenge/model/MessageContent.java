@@ -1,6 +1,6 @@
 package com.asapp.backend.challenge.model;
 
-import com.asapp.backend.challenge.model.enums.MessageContentType;
+import com.asapp.backend.challenge.enums.MessageContentType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.Accessors;

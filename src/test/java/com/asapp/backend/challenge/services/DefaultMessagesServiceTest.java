@@ -4,7 +4,7 @@ import com.asapp.backend.challenge.exceptions.UserNotFoundException;
 import com.asapp.backend.challenge.model.Message;
 import com.asapp.backend.challenge.model.MessageContent;
 import com.asapp.backend.challenge.model.User;
-import com.asapp.backend.challenge.model.enums.MessageContentType;
+import com.asapp.backend.challenge.enums.MessageContentType;
 import com.asapp.backend.challenge.repository.MessageRepository;
 import com.asapp.backend.challenge.repository.UsersRepository;
 import com.asapp.backend.challenge.services.impl.DefaultMessagesService;
