@@ -23,6 +23,15 @@ public class ControllerExceptionHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ControllerExceptionHandler.class);
 
+    @ExceptionHandler(value = {HttpMessageNotReadableException.class})
+    public ResponseEntity<ApiError> httpMessageNotReadableException(HttpMessageNotReadableException ex) {
+        LOGGER.warn(String.format("Exception %s was thrown with message: content type must be STRING, VIDEO or IMAGe", ex.getClass(), ex.getMessage()));
+        String message = "Content type must be STRING, VIDEO or IMAGE";
+        ApiError apiError = new ApiError("Message not readable exception", message, HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(apiError.getStatus())
+                .body(apiError);
+    }
+
     @ExceptionHandler(value = {PasswordNotValidException.class})
     public ResponseEntity<ApiError> passwordNotValidException(PasswordNotValidException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));

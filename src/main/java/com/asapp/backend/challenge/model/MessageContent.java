@@ -1,5 +1,6 @@
 package com.asapp.backend.challenge.model;
 
+import com.asapp.backend.challenge.model.enums.MessageContentType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "content")
@@ -21,8 +23,9 @@ public class MessageContent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
-    @NotEmpty(message = "Please provide a type attribute in JSON request")
-    String type;
+    @NotNull(message = "Please provide a valid type attribute in JSON request")
+    @Enumerated(EnumType.STRING)
+    MessageContentType type;
     @NotEmpty(message = "Please provide a text attribute in JSON request")
     String text;
 }
