@@ -25,7 +25,8 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String message;
+    @OneToOne(cascade=CascadeType.PERSIST)
+    private MessageContent message;
     private OffsetDateTime timestamp;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -44,7 +45,7 @@ public class Message {
     @JsonProperty("recipient")
     private User recipient;
 
-    public Message(String message, User sender, User recipient) {
+    public Message(MessageContent message, User sender, User recipient) {
         this.message = message;
         this.sender = sender;
         this.recipient = recipient;

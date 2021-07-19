@@ -2,6 +2,7 @@ package com.asapp.backend.challenge.services.impl;
 
 import com.asapp.backend.challenge.exceptions.UserNotFoundException;
 import com.asapp.backend.challenge.model.Message;
+import com.asapp.backend.challenge.model.MessageContent;
 import com.asapp.backend.challenge.model.User;
 import com.asapp.backend.challenge.repository.MessageRepository;
 import com.asapp.backend.challenge.repository.UsersRepository;
@@ -25,7 +26,7 @@ public class DefaultMessageService implements MessageService {
     @Autowired
     private final MessageRepository messageRepository;
 
-    public Message sendMessage(String message, long senderId, long recipientId) {
+    public Message sendMessage(MessageContent message, long senderId, long recipientId) {
         User sender = usersRepository.findById(senderId).orElseThrow(()
                 -> new UserNotFoundException(String.format("The user with ID %d does not exists", senderId)));
         User recipient = usersRepository.findById(recipientId).orElseThrow(()

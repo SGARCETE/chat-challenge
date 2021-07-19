@@ -1,7 +1,7 @@
 package com.asapp.backend.challenge.controller;
 
 import com.asapp.backend.challenge.model.Message;
-import com.asapp.backend.challenge.model.MessageDto;
+import com.asapp.backend.challenge.model.dtos.MessageDto;
 import com.asapp.backend.challenge.resources.MessageResource;
 import com.asapp.backend.challenge.resources.MessageSearchResource;
 import com.asapp.backend.challenge.services.MessageService;
@@ -27,7 +27,7 @@ public class MessagesController {
 
     @PostMapping
     public ResponseEntity<MessageResource> sendMessage(@Valid @RequestBody MessageDto messageDto) {
-        Message response = messageService.sendMessage(messageDto.getMessage()
+        Message response = messageService.sendMessage(messageDto.getContent()
                 , messageDto.getSender(), messageDto.getRecipient());
         return new ResponseEntity(new MessageResource(response.getId(), response.getTimestamp()), HttpStatus.OK);
     }
