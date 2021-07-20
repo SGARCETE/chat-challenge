@@ -45,7 +45,7 @@ public class DefaultMessagesService implements MessagesService {
     }
 
     private List<Message> getMessagesWithStart(List<Message> messages, Integer start) {
-        if(start > messages.size()) {
+        if(start <= 0 || start > messages.size() || messages.isEmpty()) {
             return messages;
         } else {
             return messages.subList(start - 1, messages.size());

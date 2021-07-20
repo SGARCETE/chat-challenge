@@ -34,8 +34,8 @@ public class MessagesController {
     }
 
     @GetMapping
-    public ResponseEntity<MessageResource> searchMessages(@RequestParam @Min(1) @Positive(message = "Please provide a valid recipient attribute in JSON request") long recipient,
-                                                          @RequestParam @Min(1) @Positive(message = "Please provide a valid start attribute in JSON request") Integer start,
+    public ResponseEntity<MessageResource> searchMessages(@Valid @RequestParam @Min(1) @Positive(message = "Please provide a valid recipient attribute in JSON request") long recipient,
+                                                          @Valid @RequestParam @Min(1)  Integer start,
                                                           @RequestParam(required = false, defaultValue = "100") Integer limit) {
         List<Message> response = messagesService.getAllMessagesBySender(recipient, start, limit);
         return new ResponseEntity(new MessageSearchResource(response), HttpStatus.OK);
