@@ -24,8 +24,9 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping
-    public ResponseEntity<AuthResource> loginUser(@Valid @RequestBody User user) {
+    public ResponseEntity<AuthResource> loginUser(@Valid @RequestBody User user) { //TODO: User must be a DTO instead of domain user
         User response = authService.authUser(user.getUserName(), user.getPassword());
+        LOGGER.info(String.format("user %s logged succesfully", response.getUserName()));
         return new ResponseEntity(new AuthResource(response.getId(), authService.getToken(user.getUserName())), HttpStatus.OK);
     }
 

@@ -119,6 +119,8 @@ public class MessagesControllerTest {
         return message;
     }
 
+    //TODO: Test JWT security token
+
     private Message buildNewMessage() {
         Message message = new Message();
         message.setId(1L);

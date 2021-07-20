@@ -29,6 +29,7 @@ public class MessagesController {
     public ResponseEntity<MessageResource> sendMessage(@Valid @RequestBody MessageDto messageDto) {
         Message response = messagesService.sendMessage(messageDto.getContent()
                 , messageDto.getSender(), messageDto.getRecipient());
+        LOGGER.debug(String.format("Message with id %s sent succesfully", response.getId()));
         return new ResponseEntity(new MessageResource(response.getId(), response.getTimestamp()), HttpStatus.OK);
     }
 

@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ *  Validates authorization token for every request
+ */
 public class TokenValidatorFilter extends OncePerRequestFilter {
     private final String HEADER = "Authorization";
     private final String PREFIX = "Bearer ";

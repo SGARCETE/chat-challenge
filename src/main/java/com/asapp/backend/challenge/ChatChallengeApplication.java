@@ -29,7 +29,7 @@ public class ChatChallengeApplication {
     @EnableWebSecurity
     @Configuration
     class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+        //TODO: Security configs should not be disabled in tests and this conditional should not be here
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             if(Arrays.stream(environment.getActiveProfiles()).anyMatch(

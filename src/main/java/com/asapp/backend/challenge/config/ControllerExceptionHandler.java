@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ *  Handle all controllers errors and returns them with a specific message for the users.
+ */
 @ControllerAdvice
 public class ControllerExceptionHandler {
 

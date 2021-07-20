@@ -24,8 +24,9 @@ public class UsersController {
     private UsersService usersService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) { //TODO: User must be a DTO instead of domain user
         User response = usersService.createUser(user);
+        LOGGER.debug(String.format("User with id %s created succesfully", response.getId()));
         return new ResponseEntity(new UserResource(response.getId()), HttpStatus.OK);
     }
 

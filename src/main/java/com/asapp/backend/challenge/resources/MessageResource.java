@@ -13,5 +13,5 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 public class MessageResource {
     long id;
-    OffsetDateTime timestamp;
+    OffsetDateTime timestamp; //TODO: This timestamp should be in another format.
 }

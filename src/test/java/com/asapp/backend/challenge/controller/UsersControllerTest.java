@@ -49,6 +49,8 @@ public class UsersControllerTest {
         ;
     }
 
+    //TODO: Test JWT security token
+
     private User buildExpectedUser() {
         return new User()
                 .setId(1L)
