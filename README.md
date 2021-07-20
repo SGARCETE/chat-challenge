@@ -38,7 +38,7 @@ Project will run in localhost:8080.
 
 ## Database Schema
 
-![Database Schema](https://github.com/sgarcete/chat-challenge/src/main/resources/files/schema.png)
+![Database Schema](https://github.com/SGARCETE/chat-challenge/blob/main/src/main/resources/files/schema.png)
 
 ## Api Usage
 
