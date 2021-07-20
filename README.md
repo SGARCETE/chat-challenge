@@ -32,13 +32,7 @@ Run the following commands in order:
 3. Run command **sudo docker build --tag=chat-challenge:latest .**
 4. Run command **sudo docker run -d -p 8080:8080 -t chat-challenge:latest**
 
-Project will run in localhost:8080. Once the application is running, the stored data in the database can be consulted
-in `http://localhost:8080/h2-console` with the following credentials:
-
-```
-User Name: sa 
-Password: password
-```
+Project will run in localhost:8080.
 
 **IMPORTANT:** Once the application stops, the stored data in database will we delete because H2 is a database that runs in memory
 
