@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
     Message save(Message message);
-    List<Message> findAllBySender(User sender, Pageable pageable);
+    List<Message> findAllByRecipient(User sender, Pageable pageable);
 }

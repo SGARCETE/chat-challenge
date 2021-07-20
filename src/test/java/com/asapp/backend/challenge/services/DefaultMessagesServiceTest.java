@@ -60,7 +60,7 @@ public class DefaultMessagesServiceTest {
     @Test
     public void testSearchUserMessagesThenReturnMessages() {
         Mockito.when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(sender));
-        Mockito.when(messageRepository.findAllBySender(Mockito.any(User.class), Mockito.any(Pageable.class))).thenReturn(Arrays.asList(message));
+        Mockito.when(messageRepository.findAllByRecipient(Mockito.any(User.class), Mockito.any(Pageable.class))).thenReturn(Arrays.asList(message));
 
         List<Message> response = messagesService.getAllMessagesBySender(sender.getId(), 1, 10);
 

@@ -40,7 +40,7 @@ public class DefaultMessagesService implements MessagesService {
         User sender = usersRepository.findById(senderId).orElseThrow(()
                 -> new UserNotFoundException(String.format("The user with ID %d does not exists", senderId)));
         Pageable size = PageRequest.of(0,limit);
-        List<Message> messages = messageRepository.findAllBySender(sender, size);
+        List<Message> messages = messageRepository.findAllByRecipient(sender, size);
         return getMessagesWithStart(messages, start);
     }
 
