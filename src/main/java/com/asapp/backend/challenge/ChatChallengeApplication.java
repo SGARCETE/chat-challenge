@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class ChatChallengeApplication {
 
     @Autowired
-    private Environment environment;;
+    private Environment environment;
 
     public static void main(String[] args) {
         SpringApplication.run(ChatChallengeApplication.class, args);
